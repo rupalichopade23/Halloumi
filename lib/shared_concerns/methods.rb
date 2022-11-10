@@ -37,6 +37,17 @@ module Concerns
             ".net"
           ].join.downcase
         end
+
+        # def launch_config
+        #   config=YAML.load_file("config/S3/#{ENV["STACK_NAME"]}.yml")
+        #   config["s3_buckets"]
+        # end
+        # def launch_amount
+        #   s3_config.length
+        # end
+        def with_ec2
+          ENV["DELETE_EC2"].to_s.strip.casecmp("true").zero? ? 0 : 1
+        end
       end
     end
   end
