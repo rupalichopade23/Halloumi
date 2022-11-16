@@ -66,8 +66,8 @@ module Concerns
           r.property(:parameters) do
             { 
               # tgarn:loadbalancer_stack.ref_output_TargetGroupTgarn,
-              # publicsubnet: skeleton_stack.ref_output_PublicSubnetName,
-              # websecuritygrp: sg_stack.ref_output_WebsecuritygroupSg,
+              privatesubnet: skeleton_stack.ref_output_PrivateSubnetName,
+              rdssecuritygrp: sg_stack.ref_output_RdssecuritygroupSg,
               SkeletonVpcId: skeleton_stack.ref_output_SkeletonVpcId,
               SkeletonInternetGatewayId: skeleton_stack.ref_output_SkeletonInternetGatewayId,
               SkeletonRouteTableId: skeleton_stack.ref_output_SkeletonRouteTableId
