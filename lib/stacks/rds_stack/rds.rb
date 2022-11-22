@@ -22,8 +22,9 @@ module Concerns
         end
         resource :secrets,
                  type: Halloumi::AWS::SecretsManager::Secret do |r|
-          r.property(:generate_secret_string) {  { PasswordLength: 15 }  }
-          r.property(:name) { "secretRDS" }           
+          r.property(:generate_secret_string) {  { PasswordLength: 15, ExcludeCharacters: '/@" '}  }
+          r.property(:name) { "secretRDS" }     
+               
         end
         resource :rds_subnet_groups,
                  type: Halloumi::AWS::RDS::DBSubnetGroup do |r|
