@@ -24,7 +24,7 @@ module Concerns
                  type: Halloumi::AWS::EC2::Subnet,
                  amount: -> { vpc_public_subnet.length } do |r, index|
           r.property(:vpc_id) { skeleton.vpc.ref }
-          r.property(:cidr_block) { vpc_public_subnet[ index ] }
+          r.property(:cidr_block) { vpc_public_subnet[index] }
           r.property(:availability_zone) do
             {
               'Fn::Select': [
@@ -51,24 +51,24 @@ module Concerns
             ]
           }
         end
-        #output(:web_subnets, "test") { |r| r.ref }
+        # output(:web_subnets, "test") { |r| r.ref }
 
         # EIP
         resource :elastic_ip_addresses,
                  type: Halloumi::AWS::EC2::EIP do |r|
-          #r.property(:domain) {}
+          # r.property(:domain) {}
         end
         resource :nat_gateways,
                  type: Halloumi::AWS::EC2::NatGateway do |r|
           r.property(:allocation_id) { elastic_ip_address.ref_allocation_id }
           r.property(:subnet_id) { public_subnets[0].ref }
-          #r.property(:domain) {}
+          # r.property(:domain) {}
         end
         resource :private_subnets,
                  type: Halloumi::AWS::EC2::Subnet,
                  amount: -> { vpc_private_subnet.length } do |r, index|
           r.property(:vpc_id) { skeleton.vpc.ref }
-          r.property(:cidr_block) { vpc_private_subnet[ index ] }
+          r.property(:cidr_block) { vpc_private_subnet[index] }
           r.property(:availability_zone) do
             {
               'Fn::Select': [
@@ -78,15 +78,13 @@ module Concerns
             }
           end
         end
-        
         resource :private_route_tables,
                  type: Halloumi::AWS::EC2::RouteTable do |r|
           r.property(:vpc_id) { skeleton.vpc.ref }
-
         end
         resource :private_routes,
                  type: Halloumi::AWS::EC2::Route do |r|
-          r.property(:destination_cidr_block) {"0.0.0.0/0"}
+          r.property(:destination_cidr_block) { "0.0.0.0/0" }
           r.property(:nat_gateway_id) { nat_gateway.ref }
           r.property(:route_table_id) { private_route_table.ref }
         end

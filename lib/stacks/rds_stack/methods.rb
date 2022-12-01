@@ -1,12 +1,13 @@
 module Concerns
   # Shared Methods for {FirstProject}.
-  module EC2
+  module RDS
     module Methods
       extend ActiveSupport::Concern
 
       included do
-        def ec2_config
-          config = YAML.load_file("config/EC2/#{ENV["STACK_NAME"]}.yml")
+        def rds_config
+          config = YAML.load_file("config/database/#{ENV["STACK_NAME"]}.yml")
+          #config["rds_database"]
         end
       end
     end

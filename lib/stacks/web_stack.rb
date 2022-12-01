@@ -6,5 +6,4 @@ class WebStack < Halloumi::CompoundResource
   # Stack concerns
   include Concerns::EC2::WebServer
   include Concerns::EC2::Methods
-  
 end

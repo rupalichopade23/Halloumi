@@ -5,5 +5,5 @@ class RDSStack < Halloumi::CompoundResource
   include Concerns::Shared::Resources
   # Stack concerns
   include Concerns::RDS::DBInstance
-  
+  include Concerns::RDS::Methods
 end

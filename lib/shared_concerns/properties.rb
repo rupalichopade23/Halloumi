@@ -77,6 +77,9 @@ module Concerns
         property :stack_name,
                  env: :STACK_NAME,
                  required: true
+        property :environment,
+                 env: :ENVIRONMENT,
+                 required: true
         # @!attribute [rw] vpc_cidr_block
         #   Property vpc_cidr_block
         #   @return [String] vpc_cidr_block
@@ -94,10 +97,8 @@ module Concerns
                  required: true
         property :web_user_data,
                  template: File.expand_path(
-          "../../templates/userdata.sh.erb",
-          __dir__
-        )
-       
+                   "../../templates/userdata.sh.erb",
+                   __dir__)
       end
     end
   end
