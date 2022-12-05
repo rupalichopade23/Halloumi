@@ -9,7 +9,7 @@ module Concerns
           config = YAML.load_file("config/database/#{ENV["STACK_NAME"]}.yml")
           config["rds_database"]
         end
-        #test2
+        #test4
       end
     end
   end
