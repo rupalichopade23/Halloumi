@@ -63,12 +63,6 @@ module Concerns
             }
           end
         end
-        # def rds_db_config
-        #   rds_config(environment, "rds_database")
-        # end
-        # def rds_dbcluster_config
-        #   rds_db_config("rds_database")
-        # end
         resource :cluster_parameter_groups,
                  type: Halloumi::AWS::RDS::DBClusterParameterGroup do |r|
           r.property(:description) { "DB cluster parameter group" }
