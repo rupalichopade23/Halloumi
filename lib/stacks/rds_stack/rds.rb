@@ -109,7 +109,7 @@ module Concerns
         end
         resource :aurora_instances,
                  type: Halloumi::AWS::RDS::DBInstance,
-                 amount: -> { 2 } do |r|
+                 amount: -> { with_aurora * rds_config["database_instances_count"].to_i } do |r|
         r.property(:db_cluster_identifier) { database_cluster.ref }
         r.property(:db_instance_class) { rds_config["db_instance_type"] }
         r.property(:db_parameter_group_name) do

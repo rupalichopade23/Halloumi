@@ -7,7 +7,7 @@ module Concerns
       included do
         def rds_config
           config = YAML.load_file("config/database/#{ENV["STACK_NAME"]}.yml")
-          #config["rds_database"]
+          config["rds_database"]
         end
       end
     end
