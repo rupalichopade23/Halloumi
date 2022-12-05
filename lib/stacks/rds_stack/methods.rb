@@ -19,7 +19,7 @@ module Concerns
           config = YAML.load_file("config/database/#{ENV["STACK_NAME"]}.yml")
           config["database_parameters"]["instance"]
         end
-        # test6
+        # test7
       end
     end
   end
