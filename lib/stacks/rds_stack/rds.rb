@@ -76,7 +76,7 @@ module Concerns
         resource :instance_parameter_groups,
                  type: Halloumi::AWS::RDS::DBParameterGroup do |r|
           r.property(:description) { "DB parameter group" }
-          r.property(:family) { "aurora5.6" }
+          r.property(:family) { "aurora-mysql5.7" }
           r.property(:parameters) do
             aurora_instance_parameter_group_parameters
           end
@@ -107,6 +107,18 @@ module Concerns
             ]
           end
         end
+        resource :aurora_instances,
+                 type: Halloumi::AWS::RDS::DBInstance,
+                 amount: -> { 2 } do |r|
+        r.property(:db_cluster_identifier) { database_cluster.ref }
+        r.property(:db_instance_class) { rds_config["db_instance_type"] }
+        r.property(:db_parameter_group_name) do
+          instance_parameter_group.ref
+        end
+        r.property(:db_subnet_group_name) { rds_subnet_group.ref }
+        r.property(:engine) { rds_config["engine"] }
+        r.property(:publicly_accessible) { false }
+      end
         # resource :rds_instances,
         #          type: Halloumi::AWS::RDS::DBInstance do |r|
         #   r.property(:allocated_storage) { 20 }

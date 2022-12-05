@@ -45,8 +45,12 @@ module Concerns
         # def launch_amount
         #   s3_config.length
         # end
+
         def with_ec2
           ENV["DELETE_EC2"].to_s.strip.casecmp("true").zero? ? 0 : 1
+        end
+        def with_aurora
+          ENV["DELETE_AURORA"].to_s.strip.casecmp("true").zero? ? 0 : 1
         end
       end
     end
