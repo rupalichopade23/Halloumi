@@ -24,15 +24,14 @@ module Concerns
           # }
           # params
         end
-
         def aurora_instance_parameter_group_parameters
           parameters =
-          {
-            "max_allowed_packet": instance_parameter_config[
-              "max_allowed_packet"],
-            "event_scheduler": instance_parameter_config["event_scheduler"]
-          }
-          parameters
+           {
+             "max_allowed_packet": instance_parameter_config[
+               "max_allowed_packet"],
+             "event_scheduler": instance_parameter_config["event_scheduler"]
+           }
+           parameters
         end
         resource :rdssecuritygroups,
                  type: Halloumi::VirtualResource do |r|
@@ -71,7 +70,7 @@ module Concerns
           r.property(:description) { "DB cluster parameter group" }
           r.property(:family) { rds_config["database_engine_family"] }
           r.property(:parameters) do
-            aurora_cluster_parameter_group_parameters
+            get_parameter_config("cluster")
           end
         end
         resource :instance_parameter_groups,
@@ -79,7 +78,7 @@ module Concerns
           r.property(:description) { "DB parameter group" }
           r.property(:family) { rds_config["database_engine_family"] }
           r.property(:parameters) do
-            aurora_instance_parameter_group_parameters
+            get_parameter_config("instance")
           end
         end
         resource :database_clusters,
