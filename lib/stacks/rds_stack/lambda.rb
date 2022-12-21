@@ -3,6 +3,9 @@ module Concerns
     module Lambda
       extend ActiveSupport::Concern
       included do
+        property :lambda_ec2,
+                 env: :LAMBDA_LAMBDA_EC2,
+                 required: true
         resource :lambda_ec2_roles,
                  type: Halloumi::AWS::IAM::Role do |r|
           r.property(:path) { "/" }
@@ -56,7 +59,12 @@ module Concerns
         end
         resource :lambda_EC2s,
                  type: Halloumi::AWS::Lambda::Function do |r|
-          r.property(:code) { "./lambda/" }
+          r.property(:code) do
+            {
+              "S3Bucket": ENV["LAMBDA_BUCKET"],
+              "S3Key": lambda_ec2
+            }
+          end
           r.property(:handler) { "index.lambda_handler" }
           r.property(:memory_size) { 128 }
           r.property(:role) { lambda_ec2_role.ref_arn }
