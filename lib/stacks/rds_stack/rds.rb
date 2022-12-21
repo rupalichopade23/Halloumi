@@ -16,7 +16,7 @@ module Concerns
           cluster_parameter_config
           # params =
           # {
-          #   "time_zone": cluster_parameter_config["time_zone"],
+          #   "time_zones": cluster_parameter_config["time_zone"],
           #   "character_set_database": cluster_parameter_config[
           #     "character_set_database"],
           #   "character_set_server": cluster_parameter_config[
