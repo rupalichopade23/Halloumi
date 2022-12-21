@@ -12,15 +12,17 @@ module Concerns
         #          env: :DATABASE_MASTER_USER_PASSWORD,
         #          required: true
         def aurora_cluster_parameter_group_parameters
-          params =
-          {
-            "time_zone": cluster_parameter_config["time_zone"],
-            "character_set_database": cluster_parameter_config[
-              "character_set_database"],
-            "character_set_server": cluster_parameter_config[
-              "character_set_server"]
-          }
-          params
+          puts cluster_parameter_config
+          cluster_parameter_config
+          # params =
+          # {
+          #   "time_zone": cluster_parameter_config["time_zone"],
+          #   "character_set_database": cluster_parameter_config[
+          #     "character_set_database"],
+          #   "character_set_server": cluster_parameter_config[
+          #     "character_set_server"]
+          # }
+          # params
         end
 
         def aurora_instance_parameter_group_parameters
@@ -65,6 +67,7 @@ module Concerns
         end
         resource :cluster_parameter_groups,
                  type: Halloumi::AWS::RDS::DBClusterParameterGroup do |r|
+
           r.property(:description) { "DB cluster parameter group" }
           r.property(:family) { rds_config["database_engine_family"] }
           r.property(:parameters) do
