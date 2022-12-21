@@ -3,6 +3,7 @@ require "bundler"
 Bundler.setup
 
 require "halloumi-tasks/tasks"
+require "halloumi-tasks/tasks/lambda"
 require "./lib/main"
 
 task :pry do

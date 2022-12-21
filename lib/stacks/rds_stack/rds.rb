@@ -11,27 +11,28 @@ module Concerns
         # property :database_master_user_password,
         #          env: :DATABASE_MASTER_USER_PASSWORD,
         #          required: true
-        # def aurora_cluster_parameter_group_parameters
-        #   params =
-        #   {
-        #     "time_zone": cluster_parameter_config["time_zone"],
-        #     "character_set_database": cluster_parameter_config[
-        #       "character_set_database"],
-        #     "character_set_server": cluster_parameter_config[
-        #       "character_set_server"]
-        #   }
-        #   params
-        # end
-
-        # def aurora_instance_parameter_group_parameters
-        #   parameters =
-        #   {
-        #     "max_allowed_packet": instance_parameter_config[
-        #       "max_allowed_packet"],
-        #     "event_scheduler": instance_parameter_config["event_scheduler"]
-        #   }
-        #   parameters
-        # end
+        def aurora_cluster_parameter_group_parameters
+          puts cluster_parameter_config
+          cluster_parameter_config
+          # params =
+          # {
+          #   "time_zone": cluster_parameter_config["time_zone"],
+          #   "character_set_database": cluster_parameter_config[
+          #     "character_set_database"],
+          #   "character_set_server": cluster_parameter_config[
+          #     "character_set_server"]
+          # }
+          # params
+        end
+        def aurora_instance_parameter_group_parameters
+          parameters =
+           {
+             "max_allowed_packet": instance_parameter_config[
+               "max_allowed_packet"],
+             "event_scheduler": instance_parameter_config["event_scheduler"]
+           }
+           parameters
+        end
         resource :rdssecuritygroups,
                  type: Halloumi::VirtualResource do |r|
           r.parameter { "rdssecuritygrp" }
@@ -65,6 +66,7 @@ module Concerns
         end
         resource :cluster_parameter_groups,
                  type: Halloumi::AWS::RDS::DBClusterParameterGroup do |r|
+
           r.property(:description) { "DB cluster parameter group" }
           r.property(:family) { rds_config["database_engine_family"] }
           r.property(:parameters) do

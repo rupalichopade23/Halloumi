@@ -20,7 +20,7 @@ rds_database:
   database_free_storage_space_alarm_period: 60
 database_parameters:
   cluster:
-    time_zone: "Europe/Amsterdam"
+    time_zone  : "Europe/Amsterdam"
     character_set_database: "utf8"
     character_set_server: "utf8"
   instance: 
