@@ -38,12 +38,9 @@ def stop_instance():
         'i-059baf37d54c10a55',
       ]
     )
-def lambda_handler(event, context):
-    instance_id = get_instance_id()
-    add_tags(instance_id)
-    stop_instance()
-
-    
-
+#def lambda_handler(event, context):
+instance_id = get_instance_id()
+add_tags(instance_id)
+stop_instance()
 
     
