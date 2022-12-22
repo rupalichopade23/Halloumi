@@ -5,7 +5,7 @@ def get_instance_id():
     Filters=[
         {
           "Name": "instance-id",
-          "Values": ["i-059baf37d54c10a55"]
+          "Values": ["i-029713abbdc6ae834"]
         
         }
     ]
@@ -35,7 +35,7 @@ def stop_instance():
     ec2_client = boto3.client("ec2")
     response = ec2_client.stop_instances(
       InstanceIds=[
-        'i-059baf37d54c10a55',
+        'i-029713abbdc6ae834',
       ]
     )
 def lambda_handler(event, context):
