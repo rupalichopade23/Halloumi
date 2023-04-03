@@ -2,17 +2,17 @@ import boto3
 import os
 def get_instance_id():
     ec2_client = boto3.client("ec2")
-    Filters=[
-        {
-          "Name": "instance-id",
-          "Values": ["i-059baf37d54c10a55"]
+    # Filters=[
+    #     {
+    #       "Name": "instance-id",
+    #       "Values": ["i-059baf37d54c10a55"]
         
-        }
-    ]
-    response = ec2_client.describe_instances(
-        Filters= Filters
-    )
-    print(response)
+    #     }
+    # ]
+    # response = ec2_client.describe_instances(
+    #     Filters= Filters
+    # )
+    # print(response)
     instance_id = response["Reservations"][0]["Instances"][0]["InstanceId"]
     print(instance_id)
     return instance_id

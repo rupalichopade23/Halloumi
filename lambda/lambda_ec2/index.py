@@ -1,5 +1,6 @@
 import boto3
 import os
+
 def get_instance_id():
     ec2_client = boto3.client("ec2")
     Filters=[
@@ -38,10 +39,15 @@ def stop_instance():
         'i-029713abbdc6ae834',
       ]
     )
+def put_parameter():
+    ssm_client = boto3.client('ssm')
+    ssm_client.put_parameter(Name="environment", Value="prod", Type="String")
+
 def lambda_handler(event, context):
     instance_id = get_instance_id()
     add_tags(instance_id)
     stop_instance()
+    put_parameter()
 
     
 

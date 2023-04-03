@@ -146,6 +146,13 @@ module Concerns
           r.property(:engine) { rds_config["engine"] }
           r.property(:publicly_accessible) { false }
         end
+        resource :snapshots, type: Halloumi::Snapshot::Aurora do |r|
+          r.property(:alarm_email_addresses) { ["rupali.chopade@sentia.com"] }
+          r.resource(:clusters) { database_cluster.ref }
+          r.property(:retention) { 2 }
+          r.property(:schedule) { "cron(0 3 * * ? *)" }
+          r.property(:prefix) { "my-awesome-snapshot" }
+        end
         # resource :rds_instances,
         #          type: Halloumi::AWS::RDS::DBInstance do |r|
         #   r.property(:allocated_storage) { 20 }
